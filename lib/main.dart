@@ -9,8 +9,6 @@ const MaterialColor iconColor = Colors.red;
 const double iconSize = 40;
 
 void main() {
-  print(markers.length);
-
   runApp(const MyApp());
 }
 
