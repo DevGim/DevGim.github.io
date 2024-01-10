@@ -41,7 +41,7 @@ class FlutterApp extends StatelessWidget {
           markers: markers
               .map((markerInfo) => Marker(
                     width: 200,
-                    height: iconSize,
+                    height: iconSize + 21, //height of the storeName is 20
                     point: LatLng(markerInfo.latitude, markerInfo.longitude),
                     child: Column(
                       children: [
