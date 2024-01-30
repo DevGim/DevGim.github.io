@@ -8,6 +8,7 @@ class MarkerInfo {
   final String type;
   final String address;
   final String district;
+  final String addressDetail;
   final double latitude;
   final double longitude;
 
@@ -18,5 +19,6 @@ class MarkerInfo {
     this.type = "",
     this.address = "",
     this.district = "",
+    this.addressDetail = "",
   });
 }

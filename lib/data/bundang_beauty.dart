@@ -1,6 +1,6 @@
-import './marker_info.dart';
+import '../marker_info.dart';
 
-List<MarkerInfo> markers = [
+List<MarkerInfo> bundangBeauty = [
   MarkerInfo(
       storeName: "매직헤어갤러리",
       address: "경기 성남시 분당구 미금로 48",

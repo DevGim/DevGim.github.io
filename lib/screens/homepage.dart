@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../marker_info.dart';
-import '../with_geo_hard.dart';
+import '../data/bundang_beauty.dart';
+import '../data/bundang_food.dart';
 
-const MaterialColor iconColor = Colors.red;
+const MaterialColor iconColorBeauty = Colors.red;
+const MaterialColor iconColorFood = Colors.blue;
+
 const double iconSize = 40;
 
 class MyHomePage extends StatelessWidget {
@@ -27,6 +29,40 @@ class FlutterApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // bundangFood와 bundangBeauty 데이터를 합침
+    List<Marker> allMarkers = [
+      ...bundangFood.map((markerInfo) => Marker(
+            width: 200,
+            height: iconSize + 21,
+            point: LatLng(markerInfo.latitude, markerInfo.longitude),
+            child: Column(
+              children: [
+                const Icon(
+                  Icons.location_pin,
+                  color: iconColorFood,
+                  size: iconSize,
+                ),
+                Text(markerInfo.storeName),
+              ],
+            ),
+          )),
+      ...bundangBeauty.map((markerInfo) => Marker(
+            width: 200,
+            height: iconSize + 21,
+            point: LatLng(markerInfo.latitude, markerInfo.longitude),
+            child: Column(
+              children: [
+                const Icon(
+                  Icons.location_pin,
+                  color: iconColorBeauty,
+                  size: iconSize,
+                ),
+                Text(markerInfo.storeName),
+              ],
+            ),
+          )),
+    ];
+
     return FlutterMap(
       options: const MapOptions(
         initialCenter: LatLng(37.411549, 127.1298651),
@@ -38,23 +74,7 @@ class FlutterApp extends StatelessWidget {
           userAgentPackageName: 'com.example.app',
         ),
         MarkerLayer(
-          markers: markers
-              .map((markerInfo) => Marker(
-                    width: 200,
-                    height: iconSize + 21, //height of the storeName is 20
-                    point: LatLng(markerInfo.latitude, markerInfo.longitude),
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.location_pin,
-                          color: iconColor,
-                          size: iconSize,
-                        ),
-                        Text(markerInfo.storeName),
-                      ],
-                    ),
-                  ))
-              .toList(),
+          markers: allMarkers, // 합쳐진 마커 리스트를 사용
         ),
         RichAttributionWidget(
           attributions: [
