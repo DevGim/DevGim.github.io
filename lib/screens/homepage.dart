@@ -13,11 +13,36 @@ const double iconSize = 40;
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
+  Widget _buildPopupDialog(BuildContext context) {
+    return const AlertDialog(
+      title: Text('Popup example'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text("Hello"),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('성남시 아동수당 신한카드 사용처'),
+        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+        actions: [
+          IconButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => _buildPopupDialog(context),
+                );
+              },
+              icon: const Icon(Icons.search)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.info))
+        ],
       ),
       body: const FlutterApp(),
     );
