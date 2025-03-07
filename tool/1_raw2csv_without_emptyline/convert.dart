@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 
 void main() {
   // 입력 파일 경로와 출력 파일 경로
@@ -34,5 +35,7 @@ void main() {
 
   // 파일 닫기
   sink.close();
-  print('변환 완료: $outputFilePath');
+  if (kDebugMode) {
+    debugPrint('변환 완료: $outputFilePath');
+  }
 }
